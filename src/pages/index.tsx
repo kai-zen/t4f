@@ -1,11 +1,17 @@
 import { Carousel } from "@/components";
 import { NextPage } from "next";
+import Head from "next/head";
 
 const HomePage: NextPage = () => {
   return (
-    <div>
-      <Carousel />
-    </div>
+    <>
+      <Head>
+        <title>Home of cats!</title>
+      </Head>
+      <div>
+        <Carousel />
+      </div>
+    </>
   );
 };
 
