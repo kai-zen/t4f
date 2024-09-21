@@ -5,13 +5,19 @@ import { NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 
 const ItemPage: NextPage = () => {
   const data = useContext(DataContext);
   const {
     query: { itemId },
   } = useRouter();
+
+  useEffect(() => {
+    if (itemId) {
+      localStorage.setItem("lastId", String(itemId));
+    }
+  }, [itemId]);
 
   if (!data) return <Loading />;
 

@@ -27,7 +27,17 @@ const Carousel: React.FC = () => {
   };
 
   useEffect(() => {
-    if (data && data.length > 0) setshowingItems(data);
+    const localLastId = localStorage.getItem("lastId");
+    if (data && data.length > 0) {
+      if (localLastId) {
+        const theIndex = data.findIndex((d) => String(d.id) === localLastId);
+        if (theIndex !== -1) {
+          const copy = [...data];
+          copy.splice(theIndex, 1);
+          setshowingItems([data[theIndex], ...copy]);
+        } else setshowingItems(data);
+      } else setshowingItems(data);
+    }
   }, [data]);
 
   useEffect(() => {
